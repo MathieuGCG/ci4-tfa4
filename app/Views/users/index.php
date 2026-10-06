@@ -48,4 +48,15 @@
         </tbody>
     </table>
 </body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3 rounded">
+    <a class="navbar-brand" href="/customers">POS System</a>
+    <div class="navbar-nav me-auto">
+        <a class="nav-link" href="/customers">Customers</a>
+        <a class="nav-link" href="/users">Users</a>
+    </div>
+    <div class="d-flex align-items-center text-white gap-3">
+        <span>Logged in as: <strong><?= esc(session()->get('full_name')) ?></strong></span>
+        <a href="/logout" class="btn btn-outline-light btn-sm">Logout</a>
+    </div>
+</nav>
 </html>

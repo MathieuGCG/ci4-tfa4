@@ -25,12 +25,13 @@ class UserController extends BaseController
         return view('users/new');
     }
 
-    public function create()
+public function create()
     {
         helper(['form']);
 
         $rules = [
             'username'  => 'required|is_unique[users.username]',
+            'password'  => 'required|min_length[6]',
             'full_name' => 'required',
             'avatar'    => 'is_image[avatar]|mime_in[avatar,image/jpg,image/jpeg,image/png]|max_size[avatar,2048]',
         ];
@@ -43,6 +44,7 @@ class UserController extends BaseController
 
         $this->userModel->save([
             'username'   => $this->request->getPost('username'),
+            'password'   => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
             'full_name'  => $this->request->getPost('full_name'),
             'avatar'     => $avatarName,
             'created_at' => date('Y-m-d H:i:s'),
